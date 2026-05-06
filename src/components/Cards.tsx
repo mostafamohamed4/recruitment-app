@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { useCandidates } from "../Hooks/useCandidates";
 
+/* ── TYPES ── */
 type Candidate = {
   id: string;
   fullName: string;
@@ -20,153 +21,130 @@ type Props = {
   error?: string | null;
   onRetry?: () => void;
 };
-  //loading
+
+/* ── SKELETON ── */
 function SkeletonCard() {
   return (
     <div className="card skeleton-card">
       <div className="card-top">
-        <div
-          style={{ display: "flex", gap: "7px", alignItems: "center", flex: 1 }}
-        >
+        <div className="flex">
           <div className="sk-box av-sk" />
           <div>
-            <div
-              className="sk-box"
-              style={{ width: 120, height: 14, marginBottom: 6 }}
-            />
-            <div className="sk-box" style={{ width: 80, height: 11 }} />
+            <div className="sk-box sk-title" />
+            <div className="sk-box sk-sub" />
           </div>
         </div>
-        <div
-          className="sk-box"
-          style={{ width: 44, height: 44, borderRadius: 8 }}
-        />
+        <div className="sk-box sk-avatar" />
       </div>
-      <div
-        className="sk-box"
-        style={{ width: "80%", height: 12, marginTop: 10 }}
-      />
-      <div style={{ display: "flex", gap: 4, marginTop: 10 }}>
-        <div
-          className="sk-box"
-          style={{ width: 60, height: 24, borderRadius: 20 }}
-        />
-        <div
-          className="sk-box"
-          style={{ width: 70, height: 24, borderRadius: 20 }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          gap: 4,
-          marginTop: 8,
-          flexWrap: "wrap" as const,
-        }}
-      >
-        {[80, 65, 90, 55].map((w, i) => (
-          <div
-            key={i}
-            className="sk-box"
-            style={{ width: w, height: 22, borderRadius: 4 }}
-          />
-        ))}
-      </div>
-      <div className="card-footer" style={{ marginTop: 12 }}>
-        <div
-          className="sk-box"
-          style={{ width: 90, height: 22, borderRadius: 20 }}
-        />
-        <div
-          className="sk-box"
-          style={{ width: 70, height: 30, borderRadius: 6 }}
-        />
+
+      <div className="sk-box sk-line" />
+
+      <div className="sk-row">
+        <div className="sk-box sk-pill" />
+        <div className="sk-box sk-pill" />
       </div>
     </div>
   );
 }
 
+/* ── EMPTY STATE ── */
+function EmptyState() {
+  return (
+    <div className="state-box">
+      <div className="state-icon">◌</div>
+      <div className="state-title">No candidates found</div>
+      <div className="state-sub">
+        Try adjusting your filters or search query.
+      </div>
+    </div>
+  );
+}
+
+/* ── ERROR STATE ── */
+function ErrorState({
+  error,
+  onRetry,
+}: {
+  error?: string | null;
+  onRetry?: () => void;
+}) {
+  return (
+    <div className="state-box">
+      <div className="state-icon">⚠</div>
+      <div className="state-title">Something went wrong</div>
+      <div className="state-sub">{error}</div>
+
+      {onRetry && (
+        <button className="state-btn" onClick={onRetry}>
+          ↺ Try again
+        </button>
+      )}
+    </div>
+  );
+}
+
+/* ── MAIN ── */
 export default function Cards({ candidates, loading, error, onRetry }: Props) {
   const { getAction } = useCandidates();
-  //loading
+
+  /* loading */
   if (loading) {
     return (
-      <div className="grid" id="candidates">
+      <div className="grid">
         {Array.from({ length: 6 }).map((_, i) => (
           <SkeletonCard key={i} />
         ))}
       </div>
     );
   }
-  //error
-  if (error) {
-    return (
-      <div className="state-box">
-        <div className="state-icon">⚠</div>
-        <div className="state-title">Something went wrong</div>
-        <div className="state-sub">{error}</div>
-        {onRetry && (
-          <button className="state-btn" onClick={onRetry}>
-            ↺ Try again
-          </button>
-        )}
-      </div>
-    );
-  }
-  /* ── no data ── */
-  if (candidates.length === 0) {
-    return (
-      <div className="state-box">
-        <div className="state-icon">◌</div>
-        <div className="state-title">No candidates found</div>
-        <div className="state-sub">
-          Try adjusting your filters or search query.
-        </div>
-      </div>
-    );
-  }
 
-  /* ── Normal Grid ── */
+  /* error */
+  if (error) return <ErrorState error={error} onRetry={onRetry} />;
+
+  /* empty */
+  if (!candidates.length) return <EmptyState />;
+
+  /* success */
   return (
-    <div className="grid" id="candidates">
+    <div className="grid">
       {candidates.map((c) => {
         const action = getAction(c.id);
+
         return (
           <div
             key={c.id}
-            className={`card ${action === "shortlisted" ? "card-shortlisted" : ""} ${
-              action === "rejected" ? "card-rejected" : ""
+            className={`card ${
+              action === "shortlisted"
+                ? "card-shortlisted"
+                : action === "rejected"
+                  ? "card-rejected"
+                  : ""
             }`}
           >
-            {/* Action ribbon */}
-            {action === "shortlisted" && (
-              <div className="card-ribbon shortlisted">★ Shortlisted</div>
+            {/* ribbon */}
+            {action && (
+              <div className={`card-ribbon ${action}`}>
+                {action === "shortlisted" ? "★ Shortlisted" : "✕ Rejected"}
+              </div>
             )}
-            {/* //rejected */}
-            {action === "rejected" && (
-              <div className="card-ribbon rejected">✕ Rejected</div>
-            )}
+
+            {/* header */}
             <div className="card-top">
-              <div
-                style={{
-                  display: "flex",
-                  gap: "7px",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
+              <div className="flex">
                 <div className="av">
                   {c.fullName
-                    ?.split(" ")
+                    .split(" ")
                     .map((n) => n[0])
-                    .join("")
-                    .slice(0, 2)}
+                    .slice(0, 2)
+                    .join("")}
                 </div>
+
                 <div>
                   <div className="card-name">{c.fullName}</div>
                   <div className="card-loc">◎ {c.location}</div>
                 </div>
               </div>
+
               <div className="score-box">
                 <div className="score-value">{c.score}</div>
                 <div className="score-bar">
@@ -177,20 +155,28 @@ export default function Cards({ candidates, loading, error, onRetry }: Props) {
                 </div>
               </div>
             </div>
+
+            {/* body */}
             <div className="headline">{c.headline}</div>
-            <div style={{ display: "flex", gap: "4px" }}>
+
+            <div className="meta">
               <span className="mp">⟢ {c.yearsOfExperience}y</span>
               <span className="mp">◷ {c.availability}</span>
             </div>
-            <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
-              {(c.skills || []).slice(0, 4).map((skill, i) => (
+
+            {/* skills */}
+            <div className="skills">
+              {c.skills.slice(0, 4).map((s, i) => (
                 <span key={i} className="sk">
-                  {skill}
+                  {s}
                 </span>
               ))}
             </div>
+
+            {/* footer */}
             <div className="card-footer">
               <span className="b-open">{c.status}</span>
+
               <Link to={`/candidate/${c.id}`} className="view-btn">
                 View →
               </Link>

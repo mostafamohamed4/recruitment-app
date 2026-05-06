@@ -9,7 +9,11 @@ body {
   background: #f0eeff;
   padding: 24px
 }
-
+.span{
+  
+      color: #b5afd0;
+      font-size: 12px;
+}
 .wrap {
   display: flex;
   flex-direction: column;
@@ -723,7 +727,9 @@ body {
 .meta-item:last-child {
   border-bottom: none
 }
-
+.meta{
+ display: flex; gap: 4px;
+}
 .meta-k {
   font-size: 11px;
   text-transform: uppercase;
@@ -765,4 +771,14 @@ body {
   height: 100%;
   border-radius: 999px;
   background: linear-gradient(90deg, #22c55e, #4f46e5);
+}@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
