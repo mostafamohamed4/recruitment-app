@@ -786,7 +786,7 @@ body {
   /* HERO */
   .hero {
     padding: 24px 16px;
-    text-align: left;
+    text-align: center;
   }
 
   .hero h1 {
