@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# 🚀 Recruitment App (Frontend Assessment)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A polished recruitment web experience built with **Vite + React + TypeScript**.  
+The app simulates a real-world talent discovery platform with candidate browsing, filtering, and profile management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# 📸 Demo
+> Add your deployed link here (Vercel / Netlify)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 🧠 Features
 
-## Expanding the ESLint configuration
+## 🏠 Main Recruitment Page (/)
+- Hero section with product intro + CTA
+- Candidate grid (cards layout)
+- Search candidates by name, skills, or headline
+- Filters:
+  - Location
+  - Experience level
+  - Status
+- Sorting:
+  - Highest score
+  - Most experience
+  - Recently updated
+- Active filter chips with quick remove
+- Reset all filters button
+- Results count indicator
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 👤 Candidate Profile Page (/candidate/:id)
+- Full candidate profile view
+- About / Summary section
+- Skills chips
+- Experience / projects section
+- Metadata (availability, score, updatedAt)
+- Actions:
+  - ⭐ Shortlist
+  - ❌ Reject
+- State persists between pages
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# ⚙️ Tech Stack
+- React (Vite)
+- TypeScript
+- React Router
+- Context API (state management)
+- LocalStorage (persistence)
+- CSS (custom styling)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# 🏗️ Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+# 🧠 State Management Approach
+- Used React Context API to manage candidate actions (shortlist / reject)
+- Each candidate action is stored by ID
+- State is persisted using localStorage for refresh safety
+
+---
+
+# 💾 Data Approach
+- Mock data stored in `/data/candidates.json`
+- Simulated API behavior with local state handling
+- No backend required
+
+---
+
+# 🎯 Key Technical Decisions
+
+- Chose Context API for simplicity and fast state sharing
+- Used localStorage to persist UI actions
+- Implemented client-side filtering for performance and simplicity
+- Separated UI components for reusability
+
+---
+
+# ⚖️ Tradeoffs
+
+- No backend integration (mock-only data)
+- No React Query (kept scope simple for assessment timebox)
+- Filtering is client-side (not optimized for large datasets)
+
+---
+
+# 🚀 Future Improvements
+
+- Add backend API (Node.js / Express)
+- Add React Query for caching & fetching
+- Add authentication system
+- Improve accessibility (ARIA + keyboard navigation)
+- Add unit tests (Vitest + React Testing Library)
+- Improve UI animations (Framer Motion)
+
+---
+
+# 📦 Setup Instructions
+
+```bash
+npm install
+npm run dev
