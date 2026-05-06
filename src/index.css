@@ -773,17 +773,32 @@ body {
   background: linear-gradient(90deg, #22c55e, #4f46e5);
 }
 
-/* ───────── TABLET ───────── */
+/* ─────────────────────────────
+   TABLET + MOBILE GLOBAL RULES
+───────────────────────────── */
+
+/* ===== TABLET ===== */
 @media (max-width: 1024px) {
+
+  /* GRID */
   .grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  /* PROFILE */
+  .p-layout {
+    flex-direction: column;
+  }
+
+  .p-sidebar {
+    width: 100%;
+  }
 }
 
-/* ───────── MOBILE ───────── */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
 
-  /* HERO */
+  /* ───── HERO ───── */
   .hero {
     padding: 24px 16px;
     text-align: center;
@@ -822,12 +837,12 @@ body {
     font-size: 18px;
   }
 
-  /* GRID */
+  /* ───── GRID ───── */
   .grid {
     grid-template-columns: 1fr;
   }
 
-  /* FILTER BAR */
+  /* ───── FILTER BAR ───── */
   .search-row {
     flex-direction: column;
   }
@@ -842,13 +857,47 @@ body {
     gap: 8px;
   }
 
-  /* CARDS */
+  /* ───── CARDS ───── */
   .card-top {
-    flex-direction: column;
     gap: 10px;
   }
 
   .score-box {
+    align-items: flex-start;
+  }
+
+  /* ───── PROFILE ───── */
+  .p-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .p-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .p-status-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-btns {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn {
+    flex: 1;
+  }
+
+  .score-circle {
+    margin-top: 10px;
+  }
+
+  .tl-head {
+    flex-direction: column;
     align-items: flex-start;
   }
 }
