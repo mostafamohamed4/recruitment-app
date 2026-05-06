@@ -771,14 +771,84 @@ body {
   height: 100%;
   border-radius: 999px;
   background: linear-gradient(90deg, #22c55e, #4f46e5);
-}@media (max-width: 1024px) {
+}
+
+/* ───────── TABLET ───────── */
+@media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 600px) {
+/* ───────── MOBILE ───────── */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero {
+    padding: 24px 16px;
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .cta-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .stats-row {
+    flex-direction: column;
+  }
+
+  .stat {
+    border-right: none;
+    border-bottom: 1px solid #ede9f9;
+  }
+
+  .stat:last-child {
+    border-bottom: none;
+  }
+
+  .stat-v {
+    font-size: 18px;
+  }
+
+  /* GRID */
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  /* FILTER BAR */
+  .search-row {
+    flex-direction: column;
+  }
+
+  .filters-row {
+    flex-direction: column;
+  }
+
+  .meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* CARDS */
+  .card-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .score-box {
+    align-items: flex-start;
   }
 }
