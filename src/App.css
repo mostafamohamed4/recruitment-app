@@ -1,0 +1,188 @@
+/* =====================================================
+   PASTE THESE STYLES INTO YOUR EXISTING index.css
+   ===================================================== */
+
+/* ── Action Buttons (Profile page) ── */
+.action-btns {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.action-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.action-btn.shortlist {
+  background: transparent;
+  border-color: #f0c040;
+  color: #f0c040;
+}
+
+.action-btn.shortlist:hover,
+.action-btn.shortlist.active {
+  background: #f0c040;
+  color: #0a0a0a;
+}
+
+.action-btn.reject {
+  background: transparent;
+  border-color: #e05555;
+  color: #e05555;
+}
+
+.action-btn.reject:hover,
+.action-btn.reject.active {
+  background: #e05555;
+  color: #fff;
+}
+
+/* ── Action Banner ── */
+.action-banner {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.action-banner.shortlisted {
+  background: rgba(240, 192, 64, 0.12);
+  border: 1px solid rgba(240, 192, 64, 0.3);
+  color: #f0c040;
+}
+
+.action-banner.rejected {
+  background: rgba(224, 85, 85, 0.1);
+  border: 1px solid rgba(224, 85, 85, 0.25);
+  color: #e05555;
+}
+
+/* ── Action Tag (Sidebar) ── */
+.action-tag {
+  font-weight: 600;
+}
+
+.action-tag.shortlisted {
+  color: #f0c040;
+}
+
+.action-tag.rejected {
+  color: #e05555;
+}
+
+.action-tag.none {
+  color: #666;
+}
+
+/* ── Card Ribbons (Home grid) ── */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-ribbon {
+  position: absolute;
+  top: 12px;
+  right: -24px;
+  padding: 3px 32px;
+  font-size: 11px;
+  font-weight: 700;
+  transform: rotate(35deg);
+  transform-origin: center;
+}
+
+.card-ribbon.shortlisted {
+  background: #f0c040;
+  color: #0a0a0a;
+}
+
+.card-ribbon.rejected {
+  background: #e05555;
+  color: #fff;
+}
+
+/* Dim rejected cards */
+.card-rejected {
+  opacity: 0.55;
+  filter: grayscale(0.4);
+}
+
+/* ── Skeleton Loader ── */
+.sk-box {
+  background: linear-gradient(90deg, #1e1e1e 25%, #2a2a2a 50%, #1e1e1e 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+  display: block;
+}
+
+.av-sk {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Empty / Error State ── */
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  gap: 10px;
+}
+
+.state-icon {
+  font-size: 48px;
+  opacity: 0.3;
+}
+
+.state-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ccc;
+}
+
+.state-sub {
+  font-size: 14px;
+  color: #666;
+}
+
+.state-btn {
+  margin-top: 8px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.state-btn:hover {
+  background: #2a2a2a;
+}
+
+/* ── Sort pill highlight ── */
+.sort-pill {
+  border-color: #444 !important;
+}
